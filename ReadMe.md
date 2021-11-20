@@ -13,7 +13,7 @@ This repo contains code and models trained to classify images, which contains da
 ### Dataset
 The data for this project was from [ACDC](https://acdc.vision.ee.ethz.ch/download) using the [rgb_anon_trainvaltest](https://acdc.vision.ee.ethz.ch/rgb_anon_trainvaltest.zip) datasets.
 
-But the size of the official data is large, you can download the sample data corresponding to the code with this link [sample data](). (Just as an example, to check the how the code runs)
+But the size of the official data is large, you can download the sample data corresponding to the code with this link [sample data](https://drive.google.com/drive/folders/1ZcPEm6sfGTU7aftupjq4yQRmSGiYp5G9?usp=sharing). (Just as an example, to check the how the code runs)
 
 There are 4006 8-bit RGB images about Anonymized adverse-condition images for train, val and test sets, and simultaneously 4006 images corresponding anonymized normal-condition images.
 
@@ -30,15 +30,15 @@ Two different approaches have been used.
 
 ##### 1. Training
 
-- [night_baseline.ipynb](./training/night_baseline.ipynb) - Training of baseline model according to brightness.
-- [night_cnn.ipynb](./training/night_cnn.ipynb) - Training of Simple 5-layer CNN model
-- [night_baseline.py](./training/night_baseline.py) - Perform baseline prediction on image using HSV and RGB thresholds.
+- [night_baseline.ipynb](./Night/Training/night_baseline.ipynb) - Training of baseline model according to brightness.
+- [night_cnn.ipynb](./Night/Training/night_cnn.ipynb) - Training of Simple 5-layer CNN model
+- [night_baseline.py](./Night/Training/night_baseline.py) - Perform baseline prediction on image using HSV and RGB thresholds.
 
 ##### 2. Utilis
 
-- [DataLoader.py](./utils/day_night/DataLoader.py) - Load the images, combine path, HSV and RGB value of each image as a dataframe.
-- [Estimation.py](./utils/day_night/Estimation.py) - Find the best Value, Hue, Red and Green threshold, as well as the maximal accuracy.
-- [Visualization.py](./utils/day_night/Visualization.py) - Visualize the images with the V, H, R, G channel value, scatter plots or real images.
+- [DataLoader.py](./Night/utils/day_night/DataLoader.py) - Load the images, combine path, HSV and RGB value of each image as a dataframe.
+- [Estimation.py](./Night/utils/day_night/Estimation.py) - Find the best Value, Hue, Red and Green threshold, as well as the maximal accuracy.
+- [Visualization.py](./Night/utils/day_night/Visualization.py) - Visualize the images with the V, H, R, G channel value, scatter plots or real images.
 
 #### Syntax for inference
 
