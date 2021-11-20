@@ -150,7 +150,7 @@ def estimate_label_improve_H(day_df_, night_df_, mode, **kwargs):
         max_V_accuracy, best_V_threshold = find_best_V(day_df.avg_V, night_df.avg_V, Vs_70_90)
         # Second, traverse to find the best H value
         Hs_20_50 = np.arange(20, 50, 1)
-        max_H_accuracy, best_H_threshold = find_best_H(day_df, night_df, Hs_20_50, best_V_threshold, mode='train')
+        max_H_accuracy, best_H_threshold = find_best_H(day_df, night_df, Hs_20_50, best_V_threshold, mode=mode)
     else:
         best_V_threshold, best_H_threshold = kwargs['V_threshold'], kwargs['H_threshold']
         max_V_accuracy = get_accuracy(avg_b_day=day_df.avg_V, avg_b_night=night_df.avg_V, threshold=best_V_threshold)

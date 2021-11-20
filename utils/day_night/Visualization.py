@@ -36,6 +36,7 @@ def day_night_scatter(df_day, df_night, x_name, y_name, line_pos, mode, loc_lege
     ax2 = sns.scatterplot(x=x_name, y=y_name, data=df_night, legend='full')
     ax2.set_title('Night Images')
     ax2.axhline(line_pos, color='red')
+    ax2.annotate(str(line_pos), (line_pos+5, line_pos+5), color='r', weight='bold',  size=10)
     plt.show()
 
 
@@ -52,7 +53,7 @@ def scatter_plot_mis_images(MISCLASSIFIED_hsv_rgb, x_name, y_name, label_name, a
     ''' 
     ax = sns.scatterplot(x=x_name, y=y_name, hue=label_name, data=MISCLASSIFIED_hsv_rgb, legend='full')
     ax.legend(loc=loc_legend)
-    ax.set_title('MISCLASSIFED Images ({:s}) [{:s} -- {:s}]'.format(x_name, y_name, mode), fontsize=15)
+    ax.set_title('MISCLASSIFED Images ({:s}) [{:s} -- {:s}]'.format(mode, x_name, y_name), fontsize=15)
     
     ann_text = 'Accuracy: ' + str(accuracy) + '%' + '\n' + 'Number of Misclassified Images: ' + str(len(MISCLASSIFIED_hsv_rgb))
     ax.text(0.1, 0.1, ann_text, color='r', weight='bold',  size=10,  transform=ax.transAxes)
@@ -71,7 +72,8 @@ def visualize_mis_images(mis_images):
     idxs = random.sample(range(0, len(mis_images)), len_images)
     
     fig = plt.figure(figsize=(num**2,num**2)) if num > 3 else  plt.figure(figsize=((num+1)**2,(num+1)**2))
-    plt.title("Misclassified images (True Label - Brightness - Predicted Label)",  fontsize=16)
+    plt.suptitle("Misclassified images (True Label - Brightness - Predicted Label)",  size=16, y=3)
+    
     for count, index in enumerate(idxs):
         ax = fig.add_subplot(num, num, count + 1, xticks=[], yticks=[])
         image = mis_images.iloc[index].img
@@ -113,8 +115,11 @@ def scatters_rgb(df, x_name, label_name, mode, num_type, loc_legend, title, hlin
             ax.legend(loc=loc_legend[i])
             if i != 0 and hlines != None:
                 ax.axhline(hlines[j], color='red')
-            ax.set_title('[{:s}] {:s} -- {:s}'.format(title[i], x_name[i], rgb[i])) 
-            
+            ax.set_title('[{:s}] {:s} -- {:s}'.format(title[i], x_name[i], rgb[j])) 
+            if num_type == 2:
+                ann_text = 'Number of Misclassified Images: ' + str(len(df[i]))
+                ax.text(0.1, 0.9, ann_text, color='r', weight='bold',  size=10,  transform=ax.transAxes)
+    
     plt.show()
     
     

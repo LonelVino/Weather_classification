@@ -84,8 +84,8 @@ MISCLASSIFIED_train_final_RGB = pd.concat([mis_train_day_df_final_RGB, mis_train
 # Draw the 2 scatter plots of misclassified images of train set
 dfs_mis_train = [MISCLASSIFIED_train_final, MISCLASSIFIED_train_final_RGB]
 x_names_mis, label_names_mis = ['avg_V']*2, ['true_label', 'true_label']
-mode_mis_train, num_type_mis = 'train', 2 # 3 kinds of images: misclassified / day/ night
-loc_legends_mis, titles_mis = ['upper left']*2, ['MisClassified ', 'MisClassified after RGB'] 
+mode_mis_train, num_type_mis = 'TRAIN', 2 # 3 kinds of images: misclassified / day/ night
+loc_legends_mis, titles_mis = ['upper left']*2, ['MisClassified no RGB', 'MisClassified with RGB'] 
 
 scatters_rgb(dfs_mis_train, x_names_mis, label_names_mis, mode_mis_train, num_type_mis, loc_legends_mis, titles_mis)
 accuracy_RGB_train = [calc_mis_accur(dfs_mis_train[i], len_train) for i in range(num_type_mis)]
@@ -106,7 +106,7 @@ MISCLASSIFIED_val_final_RGB = pd.concat([mis_val_day_df_final_RGB, mis_val_night
 
 # Draw the scatter plot of misclassified images of validation set
 dfs_mis_val = [MISCLASSIFIED_val_final, MISCLASSIFIED_val_final_RGB]
-mode_mis_val = 'val'
+mode_mis_val = 'VALIDATION'
 scatters_rgb(dfs_mis_val, x_names_mis, label_names_mis, mode_mis_val, num_type_mis, loc_legends_mis, titles_mis)
 accuracy_RGB_val = [calc_mis_accur(dfs_mis_val[i], len_val) for i in range(num_type_mis)]
 print('The accuracy accordinig to the {:s} {:s} Images: {:.2f} %'.format(titles_mis[0], mode_mis_val, accuracy_RGB_val[0]))
@@ -127,7 +127,7 @@ MISCLASSIFIED_test_final_RGB = pd.concat([mis_test_day_df_final_RGB, mis_test_ni
 
 # Draw the scatter plot of misclassified images of test set
 dfs_mis_test = [MISCLASSIFIED_test_final, MISCLASSIFIED_test_final_RGB]
-mode_mis_test = 'test'
+mode_mis_test = 'TEST'
 scatters_rgb(dfs_mis_test, x_names_mis, label_names_mis, mode_mis_test, num_type_mis, loc_legends_mis, titles_mis, is_mis=True)
 accuracy_RGB_test = [calc_mis_accur(dfs_mis_test[i], len_test) for i in range(num_type_mis)]
 print('The accuracy accordinig to the {:s} {:s} Images: {:.2f} %'.format(titles_mis[0], mode_mis_test, accuracy_RGB_test[0]))
