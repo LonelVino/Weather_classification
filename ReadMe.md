@@ -13,7 +13,7 @@ This repo contains code and models trained to classify images, which contains da
 ### Dataset
 The data for this project was from [ACDC](https://acdc.vision.ee.ethz.ch/download) using the [rgb_anon_trainvaltest](https://acdc.vision.ee.ethz.ch/rgb_anon_trainvaltest.zip) datasets.
 
-But the size of the official data is large, you can download the sample data corresponding to the code with this link [sample data](https://drive.google.com/drive/folders/1ZcPEm6sfGTU7aftupjq4yQRmSGiYp5G9?usp=sharing). (Just as an example, to check the how the code runs)
+But the size of the official data is large, you can download the sample data corresponding to the code with this link [sample data](https://drive.google.com/drive/folders/1q3L_LKobZAN0AFXLtfnnlAsLMQhkZEBG?usp=sharing). (Just as an example, to check the how the code runs)
 
 There are 4006 8-bit RGB images about Anonymized adverse-condition images for train, val and test sets, and simultaneously 4006 images corresponding anonymized normal-condition images.
 
