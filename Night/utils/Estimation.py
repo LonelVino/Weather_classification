@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
-from .Visualization import *
+from Visualization import *
 
 
 def get_accuracy(avg_b_day=[], avg_b_night=[], threshold=90.):

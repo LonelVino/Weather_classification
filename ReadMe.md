@@ -21,8 +21,8 @@ There are 4006 8-bit RGB images about Anonymized adverse-condition images for tr
 
 Two different approaches have been used.
 
-- Baseline model - Basic model that uses average brightness from Value channel of HSV image as threshold, with 3 filters from Hue Channel of HSV, R Channel and G Channel of RGB,  to classify images. <br/>Achieves an accuracy of $98.56\%$ on the validation set and $94.40\%$ on test set.
-- Simple CNN - A Simple 5-layer Fully Convolutional Neural Network, that works on Value channel of HSV image. <br/>Achieves an accuracy of $100\%$ on the validation set.
+- Baseline model - Basic model that uses average brightness from Value channel of HSV image as threshold, with 3 filters from Hue Channel of HSV, R Channel and G Channel of RGB,  to classify images. <br/>Achieves an accuracy of 98.56\% on the validation set and 94.40\% on test set.
+- Simple CNN - A Simple 5-layer Fully Convolutional Neural Network, that works on Value channel of HSV image. <br/>Achieves an accuracy of 100\% on the validation set.
 
 ### Files
 
@@ -44,51 +44,65 @@ Two different approaches have been used.
 
 ```bash
 git clone git@github.com:LonelVino/Weather_classification.git
-cd Weather_classification
-python3 ./training/night_baseline.py
+cd Weather_classification/Night/Training
+python3 night_baseline.py
 ```
 
-#### Sample Results
-
-> ### Inference
->
-> - [predict_simple_model.py](https://github.com/jayeshsaita/Day-Night-Classifier/blob/master/predict_simple_model.py) - Perform prediction on image using the Simple 5-layer CNN
-> - [predict_mbv2.py](https://github.com/jayeshsaita/Day-Night-Classifier/blob/master/predict_mbv2.py) - Perform prediction on image using the MobileNetv2 model.
-> - [predict_all_models.py](https://github.com/jayeshsaita/Day-Night-Classifier/blob/master/predict_all_models.py) - Performs prediction on image using all 3 models and outputs the results side by side for comparision.
->
-> #### Syntax for inference
->
-> ```
-> python predict_file.py -i /path/to/image.jpg
-> ```
->
-> Example:
->
-> ```
-> python predict_all_models.py -i day_night_dataset/val/night/pexels-photo-2403202.jpeg
-> ```
->
-> #### Sample ResultsNote: The data below is obtained by training **the whole dataset**, different with the results of the sample data. 
-
-| Threshold          | Train Accuracy | Validation Accuracy | Test Accuracy |
-| ------------------ | -------------- | ------------------- | ------------- |
-| $\mathrm{V}$       | $92.50\%$      | $97.64\%$           | $89.60\%$     |
-| $\mathrm{V+H}$     | $94.00\%$      | $98.56\%$           | $92.00\%$     |
-| $\mathrm{V+H+R+G}$ | $95.38\%$      | $98.56\%$           | $94.40\%$     |
-
-Where, $\mathrm{V,H}$ mean Value and Hue Channels of HSV, and $\mathrm{R,G}$ mean Red and Green Channels of RGB.
-
-| Threshold          | $\mathrm{V}$ Channel | $\mathrm{H}$ Channel | $\mathrm{R}$ Channel | $\mathrm{G}$ Channel |
-| ------------------ | -------------------- | -------------------- | -------------------- | -------------------- |
-| **Train Set**      | $80.70$              | $23.00$              |                      |                      |
-| **Validation Set** | $79.00$              | $27.00$              |                      |                      |
-| **Test Set**       | $80.70$              | $23.00$              |                      |                      |
-
-
+#### Threshold Rules
 
 | True Label | Predict Label | Condition (Feature) | Correct |
 | ---------- | ------------- | ------------------- | ------- |
-| Night      | Day           | H < $H_{\min}$      | Night   |
-| Day        | Night         | R > $R_{\max}$      | Day     |
-| Night      | Day           | G > $G_{\max}$      | Night   |
+| Night      | Day           | H < H_Threshold     | Night   |
+| Day        | Night         | R > R_Threshold     | Day     |
+| Night      | Day           | G > G_Threshold     | Night   |
 
+#### Sample Results
+
+| Threshold | Train Accuracy | Validation Accuracy | Test Accuracy |
+| --------- | -------------- | ------------------- | ------------- |
+| *V*       | 92.50\%        | 97.64\%             | 89.60\%       |
+| *V+H*     | 94.00\%        | 98.56\%             | 92.00\%       |
+| *V+H+R+G* | 95.38\%        | 98.56\%             | 94.40\%       |
+
+Where, {V,H} mean Value and Hue Channels of HSV, and {R,G} mean Red and Green Channels of RGB.
+
+| Threshold          | *V* Channel | *H* Channel | *R* Channel | *G* Channel |
+| ------------------ | ----------- | ----------- | ----------- | ----------- |
+| **Train Set**      | 80.70       | 23.00       | 90          | 128         |
+| **Validation Set** | 79.00       | 27.00       | 90          | 110         |
+| **Test Set**       | 80.70       | 23.00       | 90          | 128         |
+
+
+
+<p float="left">
+  <center><b>The H channel Threshold of train set</b></center>
+  <img src="./assets/best_H_threshold_train.png" width="800" />
+</p>
+
+The best H Channel threshold of train set is **23**, as shown above, which means the images with H channel value lower than **23**, in all likelihood, are “**Night Images**”.
+
+<p float="left">
+   	<center><b>The misclassified images in train set with H threshold filter</b></center>
+    <img src="./assets/mis_images_real_H_train.png" width="1000"/>
+    <center style='margin-top:2em'><b>The misclassified images in test set with H threshold filter</b></center>
+    <img src='./assets/mis_images_real_H_test.png' width="1000"/>
+</p>
+
+As we can see, there’re lots of **large shadow** in misclassified day images and many **artificial yellow lights** in misclassfied night images.  
+
+
+<p float="left">
+  <center><b>The R and G channel Thresholds of train set</b></center>
+  <img src="./assets/best_RGB_threshold_train.png" width="800" />
+</p>
+
+The first row represents the misclassified images, the second row represents the day images, the last row represents the night images.
+
+The channels are R, G and B channel from the left column to the right column.
+
+ <p float="left">
+   	<center><b>The misclassified images in train set with H threshold filter</b></center>
+    <img src="./assets/mis_images_scatter_RGB_train.png" width="1000"/>
+    <center style='margin-top:2em'><b>The misclassified images in test set with H threshold filter</b></center>
+    <img src='./assets/mis_images_scatter_RGB_test.png' width="1000"/>
+</p>

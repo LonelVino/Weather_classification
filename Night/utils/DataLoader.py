@@ -42,7 +42,7 @@ def load_images(weather_type, data_type):
     data = []
     data_paths = []
     counter = 0
-    path = './images/' + weather_type + '/' + data_type + '/'
+    path = '../../images/' + weather_type + '/' + data_type + '/'
 
     # For each Gopro directory, for each image, store the image and its path in train and train_paths respectively
     for directory_name in os.listdir(path):

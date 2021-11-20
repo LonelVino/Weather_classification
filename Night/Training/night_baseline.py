@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from utils.day_night.DataLoader import *
-from utils.day_night.Visualization import *
-from utils.day_night.Estimation import *
+import sys
+sys.path.insert(1, '../../Night/utils')
+
+from DataLoader import *
+from Visualization import *
+from Estimation import *
 
 import pandas as pd
 
