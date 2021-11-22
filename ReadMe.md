@@ -82,7 +82,7 @@ Where, {V,H} mean Value and Hue Channels of HSV, and {R,G} mean Red and Green Ch
 The best H Channel threshold of train set is **23**, as shown above, which means the images with H channel value lower than **23**, in all likelihood, are “**Night Images**”.
 
 <p float="left">
-   	<center><b>The misclassified images in train set with R and G threshold filter</b></center>
+   	<center><b>The misclassified images in train set with H threshold filter</b></center>
     <img src="./assets/mis_images_real_H_train.png" width="1000"/>
     <center style='margin-top:2em'><b>The misclassified images in test set with H threshold filter</b></center>
     <img src='./assets/mis_images_real_H_test.png' width="1000"/>
