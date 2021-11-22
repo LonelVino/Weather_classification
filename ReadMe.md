@@ -103,6 +103,6 @@ The channels are R, G and B channel from the left column to the right column.
  <p float="left">
    	<center><b>The misclassified images in train set with R and G threshold filter</b></center>
     <img src="./assets/mis_images_scatter_RGB_train.png" width="1000"/>
-    <center style='margin-top:2em'><b>The misclassified images in test set with H threshold filter</b></center>
+    <center style='margin-top:2em'><b>The misclassified images in test set with R and G threshold filter</b></center>
     <img src='./assets/mis_images_scatter_RGB_test.png' width="1000"/>
 </p>
